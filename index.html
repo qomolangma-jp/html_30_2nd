@@ -7,68 +7,33 @@
   <title>小松30-2期 参加者一覧</title>
   <style>
     /* * --- フォント設定 --- */
-    @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap');
     
     body {
-      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-family: 'Noto Sans JP', sans-serif;
       min-height: 100vh;
-      color: #e0f2fe; /* 全体のテキスト色 (ライトブルー) */
+      color: #333333;
+      background-color: #f5f7f8;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      
-      /* * --- 背景設定 --- */
-      background-image: url('bg_01.png');
-      background-attachment: fixed;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
-    }
-
-    /* * --- 背景オーバーレイ ---
-     * 色: 深い紺碧から漆黒へのグラデーション（夜の海をイメージ）
-     */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(10, 10, 20, 0.70), rgba(20, 15, 30, 0.75)); /* 深い黒から深紫 */
-      z-index: -1;
     }
     
-    /* * --- タイトルフォント ---
-     * 色: 月光や海底の輝きをイメージしたシルバーブルーのグラデーション
-     */
+    /* * --- タイトルフォント --- */
     .title-font {
-      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-family: 'Noto Sans JP', sans-serif;
       font-weight: 700;
-      background: linear-gradient(135deg, #e8d4a0, #d4af37, #f4e5c2); /* 金色系グラデーション */
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 0 25px rgba(212, 175, 55, 0.5); /* 金色の輝き */
+      color: #ffffff;
     }
     
-    /* * --- カードデザイン ---
-     * 背景色: 深い青のガラス風
-     * ボーダー: シルバーブルーのグラデーション
-     */
+    /* * --- カードデザイン --- */
     .card {
-      background: linear-gradient(135deg, rgba(30, 25, 20, 0.75), rgba(40, 30, 25, 0.85)); /* 深いブラウン系 */
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 2px solid transparent;
-      background-clip: padding-box;
+      background: #ffffff;
+      border: 1px solid #e0eaec;
       position: relative;
-      box-shadow: 
-        0 10px 40px 0 rgba(0, 0, 0, 0.6),
-        inset 0 1px 0 rgba(212, 175, 55, 0.3);
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      box-shadow: 0 2px 12px rgba(30, 110, 125, 0.08);
+      transition: all 0.3s ease;
       overflow: hidden;
-      border-radius: 1rem;
+      border-radius: 0.75rem;
     }
 
     .card::before {
@@ -76,40 +41,31 @@
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 1rem;
-      padding: 2px;
-      background: linear-gradient(135deg, #d4af37, #b8941f, #d4af37);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, #e84886, #f5e140, #46c8e0);
+      border-radius: 0.75rem 0 0 0.75rem;
     }
 
     /* * --- カード操作時 --- */
     .card:active {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 
-        0 15px 50px 0 rgba(0, 0, 0, 0.7),
-        0 0 30px rgba(212, 175, 55, 0.4),
-        inset 0 1px 0 rgba(212, 175, 55, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(30, 110, 125, 0.15);
     }
     
-    /* * --- 展開ボタン ---
-     * テキスト色を明るいブルーに
-     */
+    /* * --- 展開ボタン --- */
     .expand-button {
       position: relative;
       transition: all 0.3s ease;
       padding-right: 2.5rem;
+      padding-left: 0.75rem;
       -webkit-tap-highlight-color: transparent;
       touch-action: manipulation;
-      color: #f5e6d3; /* 温かみのあるオフホワイト */
+      color: #222222;
     }
     
     .expand-button:active {
-      color: #d4af37; /* クラシックゴールド */
+      color: #1e7a8c;
     }
     
     /* 展開ボタンの矢印 (▼) */
@@ -120,9 +76,8 @@
       top: 50%;
       transform: translateY(-50%) scale(0.8);
       transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-      font-size: 1rem;
-      color: #d4af37; /* クラシックゴールド */
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6));
+      font-size: 0.85rem;
+      color: #1e7a8c;
     }
     
     .expand-button.expanded::after {
@@ -151,24 +106,22 @@
       transform: translateY(0);
     }
     
-    /* * --- アクセントライン ---
-     * シルバーブルーのグラデーションに変更
-     */
+    /* * --- アクセントライン --- */
     .accent-line {
-      width: 4px;
-      background: linear-gradient(180deg, #d4af37, #b8941f, #d4af37);
+      width: 3px;
+      background: linear-gradient(180deg, #e84886, #46c8e0);
       border-radius: 2px;
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
     }
     
     /* * --- ヘッダー --- */
     .header-container {
       position: relative;
-      padding: 2rem 0 1.5rem;
+      padding: 1rem 1rem 1.75rem;
       text-align: center;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #1e7a8c, #1a5f7a);
+      border-radius: 0 0 1.5rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(30, 110, 125, 0.25);
     }
 
     .header-container::after {
@@ -177,10 +130,10 @@
       bottom: -1px;
       left: 50%;
       transform: translateX(-50%);
-      width: 60%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #d4af37, transparent);
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(90deg, #e84886, #f5e140, #46c8e0, #b594d4);
+      border-radius: 2px;
     }
     
     .loading {
@@ -195,67 +148,81 @@
     /* 区切り線 */
     .divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.4), transparent);
-      margin: 0.75rem 0;
-      box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+      background: #e8f0f2;
+      margin: 0.5rem 0 0.5rem 0.75rem;
     }
     
     /* ふりがな */
     .kana-text {
-      color: #d9c589; /* 柔らかい金色 */
+      color: #6b8a90;
       font-weight: 300;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
     }
     
-    /* 詳細ラベル (今のお仕事...) */
+    /* 詳細ラベル */
     .label-text {
-      color: #d4af37; /* クラシックゴールド */
+      color: #1e7a8c;
       font-weight: 600;
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
       margin-bottom: 0.4rem;
       text-transform: uppercase;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-      border-left: 3px solid #d4af37;
+      border-left: 3px solid #46c8e0;
       padding-left: 0.5rem;
     }
     
     /* 詳細内容 */
     .content-text {
-      color: #f5e6d3; /* 温かみのあるアイボリー */
+      color: #444444;
       line-height: 1.8;
       font-weight: 300;
       font-size: 0.9rem;
     }
+
+    /* 属性バッジ */
+    .category-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      margin-top: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+    .badge-admin   { background: #e0f4f7; color: #1e7a8c; }
+    .badge-company { background: #fff0f6; color: #c0316a; }
+    .badge-citizen { background: #fffbe6; color: #a07800; }
     
     /* スマホ最適化 */
     @media (max-width: 640px) {
       .card {
         margin: 0;
-        border-radius: 0.75rem;
-        background: linear-gradient(135deg, rgba(30, 25, 20, 0.8), rgba(40, 30, 25, 0.9)); 
+        border-radius: 0.5rem;
       }
       
       .expand-button {
-        font-size: 1rem;
-        padding: 0.8rem;
+        font-size: 0.95rem;
+        padding: 0.6rem 2.5rem 0.6rem 0.75rem;
       }
 
       .title-font {
-        font-size: 1.75rem; 
+        font-size: 1.6rem;
+      }
+
+      .header-container {
+        border-radius: 0 0 1rem 1rem;
       }
     }
   </style>
 </head>
-<body class="px-3 py-4">
+<body>
   <div class="max-w-md mx-auto">
     <!-- Header --><div class="header-container">
-      <h1 class="title-font text-4xl font-bold mb-3">IMUK#3 参加者一覧</h1>
-      <p class="text-sm font-light tracking-widest" style="color: #d9c589; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">— お名前をタップして詳細表示 —</p>
+      <h1 class="title-font text-3xl font-bold mb-2">小松をつなげる30人<br>2期 参加者一覧</h1>
+      <p class="text-sm font-light tracking-widest" style="color: rgba(255,255,255,0.75);">— お名前をタップして詳細表示 —</p>
     </div>
     
     <!-- Loading State --><div id="loading" class="text-center py-8">
-      <div class="loading text-sm font-light" style="color: #d9c589; text-shadow: 0 1px 3px rgba(0,0,0,0.6);">Now loading...</div>
+      <div class="loading text-sm font-light" style="color: #1e7a8c;">Now loading...</div>
     </div>
     
     <!-- Main Content --><div id="app" class="space-y-4"></div>
@@ -265,7 +232,7 @@
   /* * --- JavaScript ---
    * 機能は変更せず、そのまま流用しています
    */
-  fetch('https://script.google.com/macros/s/AKfycbxF4R7ger6vcS-5Wiyh1cZlf8XUlw2CWpJFxaDZ-cwgVLjpGuzzgqT_4AuJOsF89dJUJg/exec')
+  fetch('https://script.google.com/macros/s/AKfycbx-bRMNBwpy-wQ2fwi09fTHpqAGDTiYJpKGDblPxOmoGsJDEsTFgXuPsKUtwtsB7xkMyw/exec')
     .then(res => res.json())
     .then(rawData => {
       const app = document.getElementById("app");
@@ -278,18 +245,16 @@
       console.log('Available fields in data:', rawData[0] ? Object.keys(rawData[0]) : 'No data');
       console.log('Sample data:', rawData[0]);
 
-      // Map data to new keys, filter by 予定=OK, and sort
+      // Map data to new keys and sort
       const data = rawData
-        .filter(p => p['予定'] === 'OK')  // Filter only items where 予定 is 'OK'
         .map(p => ({
-          lastName: p['氏名（姓）'],
-          firstName: p['氏名（名）'],
-          lastNameKana: p['ふりがな（姓）'],
-          firstNameKana: p['ふりがな（名）'],
+          lastName: p['姓'],
+          firstName: p['名'],
+          lastNameKana: p['せい'],
+          firstNameKana: p['めい'],
           affiliation: p['所属'],
-          workSummary: p['今のお仕事や活動を一言でおしえてください'],
-          komatsuImpression: p['小松市に対するイメージをひとことで'],
-          schedule: p['予定']  // Keep schedule field for reference
+          category: p['属性'],
+          comment: p['コメント']
         }))
         .sort((a, b) => {
           const nameA = `${a.lastNameKana} ${a.firstNameKana}`;
@@ -306,32 +271,22 @@
           <button class="expand-button w-full text-left font-medium text-base pb-1" 
                   onclick="toggleDetail(${index})">
             <div class="mb-1">
-              <span class="title-font text-xl">${person.lastName} ${person.firstName}</span>
+              <span class="font-bold text-lg" style="color: #1a3a40;">${person.lastName} ${person.firstName}</span>
               <span class="kana-text ml-2 text-sm">（${person.lastNameKana} ${person.firstNameKana}）</span>
             </div>
-            <div class="text-sm font-normal" style="color: #d9c589;">${person.affiliation}</div>
+            <div class="text-sm font-normal" style="color: #4a7a84;">${person.affiliation}</div>
           </button>
           
           <div class="divider"></div>
           
           <div id="detail${index}" class="detail-content">
             <div class="pt-3 space-y-4">
-              ${person.workSummary ? `
+              ${person.comment ? `
               <div class="detail-section flex items-start">
                 <div class="accent-line mr-3 mt-1" style="min-height: 60px;"></div>
                 <div class="flex-1">
-                  <div class="label-text">今のお仕事や活動</div>
-                  <div class="content-text">${person.workSummary}</div>
-                </div>
-              </div>
-              ` : ''}
-              
-              ${person.komatsuImpression ? `
-              <div class="detail-section flex items-start">
-                <div class="accent-line mr-3 mt-1" style="min-height: 60px;"></div>
-                <div class="flex-1">
-                  <div class="label-text">小松市に対するイメージ</div>
-                  <div class="content-text">${person.komatsuImpression}</div>
+                  <div class="label-text">コメント</div>
+                  <div class="content-text" style="white-space: pre-wrap;">${person.comment}</div>
                 </div>
               </div>
               ` : ''}
